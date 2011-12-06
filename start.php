@@ -51,10 +51,10 @@ function relatedgroups_setup_sidebar_menus() {
 	if (elgg_get_context() == 'groups') {
 		if ($page_owner instanceof ElggGroup) {
 			if (elgg_is_logged_in() && $page_owner->canEdit() || elgg_is_admin_logged_in()) {
-				$url = elgg_get_site_url() . "relatedgroups/manage/{$page_owner->getGUID()}";
+				$url = elgg_get_site_url() . "relatedgroups/edit/{$page_owner->getGUID()}";
 				elgg_register_menu_item('page', array(
 					'name' => 'relatedgroups',
-					'text' => elgg_echo('relatedgroups:manage'),
+					'text' => elgg_echo('relatedgroups:add'),
 					'href' => $url,
 				));
 			}
@@ -66,7 +66,7 @@ function relatedgroups_setup_sidebar_menus() {
  * Dispatches related groups pages.
  * URLs take the form of
  *  
- *  Group view related groups:      relatedgroups/view/<group_guid>
+ *  Group view related groups:      relatedgroups/owner/<group_guid>
  *  Group manage related groups:    relatedgroups/manage/<group_guid>
  *
  * @param array $page
@@ -76,13 +76,14 @@ function relatedgroups_page_handler($page){
 	$pages_path = elgg_get_plugins_path() . "relatedgroups/pages";
 	
 	switch($page[0]) {
-		case 'manage':
+		case 'add':
+		case 'edit':
 			elgg_set_page_owner_guid($page[1]);
-			include($pages_path."/relatedgroups/manage.php");
+			include($pages_path."/relatedgroups/edit.php");
 			break;
-		case 'view':
+		case 'owner':
 			elgg_set_page_owner_guid($page[1]);
-			include($pages_path."/relatedgroups/view.php");
+			include($pages_path."/relatedgroups/owner.php");
 			break;
 	}
 }
@@ -92,7 +93,7 @@ function relatedgroups_related_menu_setup($hook, $type, $return, $params){
 	$group = elgg_get_page_owner_entity();
 	$othergroup = $params['entity'];
 	
-	if($group instanceof ElggGroup &&
+	if($group instanceof ElggGroup && $group->canEdit() &&
 					$othergroup instanceof ElggGroup &&
 									elgg_in_context('relatedgroups')){
 		

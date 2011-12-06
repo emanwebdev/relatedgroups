@@ -17,7 +17,7 @@ if(!($page_owner instanceof ElggGroup) || !$page_owner->canEdit()){
 elgg_push_breadcrumb(elgg_echo('group'),'groups/all');
 elgg_push_breadcrumb($page_owner->name, $page_owner->getURL());
 
-$title = elgg_echo('relatedgroups:manage');
+$title = elgg_echo('relatedgroups:add');
 elgg_push_breadcrumb($title);
 
 $content = list_relatedgroups($page_owner);
