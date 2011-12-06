@@ -10,6 +10,7 @@ $english = array(
 			"relatedgroups:more" => 'View all related groups',
 			"relatedgroups:owner" => 'Groups related to %s',
 			"relatedgroups:none" => 'No related groups yet.',
+			"relatedgroups:group" => 'Group related groups',
 			"relatedgroups:in_frontpage" => 'Show related groups on group page',
 			"relatedgroups:add" => 'Manage related groups',
 			"relatedgroups:add:label" => "Write the group's name",
