@@ -19,6 +19,7 @@ $body = elgg_list_entities_from_relationship(array(
 	'relationship' => 'related',
 	'relationship_guid' => $vars['entity']->guid,
 	'limit' => $limit,
+	'types' => 'group',
 	'list_type' => 'gallery',
 	'gallery_class' => 'elgg-gallery-groups',
 	'full_view' => false
