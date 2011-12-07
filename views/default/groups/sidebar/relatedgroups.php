@@ -16,7 +16,7 @@ $all_link = elgg_view('output/url', array(
 	'is_trusted' => true,
 ));
 
-$body = elgg_list_entities_from_relationship(array(
+$params = array(
 	'relationship' => 'related',
 	'relationship_guid' => $vars['entity']->guid,
 	'limit' => $limit,
@@ -24,8 +24,15 @@ $body = elgg_list_entities_from_relationship(array(
 	'list_type' => 'gallery',
 	'gallery_class' => 'elgg-gallery-groups',
 	'full_view' => false
-));
+);
 
+$params['count'] = true;
+if(elgg_get_entities_from_relationship($params) == 0) {
+	return true;
+}
+$params['count'] = false;
+
+$body = elgg_list_entities_from_relationship($params);
 $body .= "<div class='center mts'>$all_link</div>";
 
 echo elgg_view_module('aside', elgg_echo('relatedgroups'), $body);
