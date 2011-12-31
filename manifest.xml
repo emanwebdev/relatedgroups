@@ -8,20 +8,17 @@
 	<copyright>(C) Lorea 2011</copyright>
 	<license>GNU Public License version 2</license>
 
-	<requires>
-		<type>elgg_version</type>
-		<version>2011061200</version>
-	</requires>
-
-	<!--<screenshot>
-		<description>An example screenshot</description>
-		<path>graphics/plugin_ss1.png</path>
-	</screenshot>-->
+	<screenshot>
+		<description>Groups sidebar</description>
+		<path>graphics/screenshot.png</path>
+	</screenshot>
 
 	<category>enhancement</category>
 
-	<admin_interface>simple</admin_interface>
-
+	<requires>
+		<type>elgg_release</type>
+		<version>1.8</version>
+	</requires>
 
 	<requires>
 		<type>priority</type>
