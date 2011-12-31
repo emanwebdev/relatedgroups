@@ -1,13 +1,19 @@
 <?php
+
 	function relatedgroups_is_group_url($url, &$matches = array()){
 		$url = parse_url($url);
 		$pattern = "/groups\/profile\/(?P<group_guid>\d+)\//";
-		return preg_match($pattern, $url['path'], $matches) != 0;
+		$matches = array();
+		
+		if(preg_match($pattern, $url['path'], $matches) != 0) {
+			return $matches;
+		} else {
+			return false;
+		}
 	}
 
 	function relatedgroups_get_group_from_url($group_url){
-		$matches = array();
-		relatedgroups_is_group_url($group_url, $matches);
+		$matches = relatedgroups_is_group_url($group_url);
 		$group_guid = $matches['group_guid'];
 		$group = get_entity($group_guid);
 		if($group->getURL() == $group_url){
@@ -16,6 +22,7 @@
 			return false;
 		}
 	}
+	
 	$group_guid = get_input('group');
 	$othergroup_guid = get_input('othergroup');
 	$othergroup_url = get_input('othergroup_url'); // maybe it isn't used
