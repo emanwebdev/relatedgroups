@@ -17,15 +17,16 @@ $all_link = elgg_view('output/url', array(
 	'is_trusted' => true,
 ));
 
-elgg_push_context('widgets');
 $options = array(
 	'relationship' => 'related',
-	'relationship_guid' => $owner->guid,
+	'relationship_guid' => $group->guid,
 	'type' => 'group',
 	'limit' => 6,
 	'full_view' => false,
 	'pagination' => false,
 );
+
+elgg_push_context('widgets');
 $content = elgg_list_entities_from_relationship($options);
 elgg_pop_context();
 
